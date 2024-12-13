@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Mahasiswa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css"> <!-- Style tambahan jika ada -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa; /* Warna latar belakang Bootstrap */
+        }
+        .card {
+            width: 100%;
+            max-width: 600px;
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .card-header {
+            font-weight: bold;
+            border-bottom: none;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header text-center">
+            DATA MAHASISWA
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Nama</th>
+                    <td>{{ mahasiswa[1] }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ mahasiswa[2] }}</td>
+                </tr>
+                <tr>
+                    <th>No HP</th>
+                    <td>{{ mahasiswa[3] }}</td>
+                </tr>
+                <tr>
+                    <th>Tanggal Lahir</th>
+                    <td>{{ mahasiswa[4] }}</td>
+                </tr>
+                <tr>
+                    <th>Alamat</th>
+                    <td>{{ mahasiswa[5] }}</td>
+                </tr>
+                <tr>
+                    <th>Jenis Kelamin</th>
+                    <td>{{ 'Laki-laki' if mahasiswa[6] == 'L' else 'Perempuan' }}</td>
+                </tr>
+                <tr>
+                    <th>Status Mahasiswa</th>
+                    <td>
+                        {% if mahasiswa[7] == 1 %}
+                            Diterima
+                        {% elif mahasiswa[7] == 2 %}
+                            Ditolak
+                        {% else %}
+                            Menunggu
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="card-footer text-center">
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS dan jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

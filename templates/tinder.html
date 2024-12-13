@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Status</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .table-container {
+            margin: auto;
+            max-width: 900px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="table-container">
+        <h2 class="text-center mb-4">Kelola Status</h2>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Tindakan</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mhs in mahasiswa %}
+                <tr>
+                    <td>{{ mhs[0] }}</td>
+                    <td>{{ mhs[1] }}</td>
+                    <td>{{ mhs[2] }}</td>
+                    <td>{{ mhs[3] or 'Belum Ditentukan' }}</td>
+                    <td>
+                        <form method="POST" action="/admin/tindakan_terkini">
+                            <input type="hidden" name="id_mahasiswa" value="{{ mhs[0] }}">
+                            <div class="input-group">
+                                <select name="keputusan" class="form-control">
+                                    {% for status in status_list %}
+                                    <option value="{{ status[0] }}">{{ status[1] }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-success">Simpan</button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/admin/dashboard" class="btn btn-secondary btn-block">Kembali</a>
+    </div>
+
+    <!-- Bootstrap JS dan jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

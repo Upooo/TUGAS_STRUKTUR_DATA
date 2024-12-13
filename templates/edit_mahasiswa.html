@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Mahasiswa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css"> <!-- Jika ada style tambahan -->
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="text-center">Edit Mahasiswa</h2>
+
+        <!-- Form Edit Mahasiswa -->
+        <form method="POST" action="/admin/edit_mahasiswa/{{ mahasiswa[0] }}">
+            <div class="form-group">
+                <label for="nama">Nama:</label>
+                <input type="text" class="form-control" id="nama" name="nama" value="{{ mahasiswa[1] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ mahasiswa[2] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="no_hp">No HP:</label>
+                <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ mahasiswa[3] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tanggal_lahir">Tanggal Lahir:</label>
+                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="{{ mahasiswa[4] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="jenis_kelamin">Jenis Kelamin:</label>
+                <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
+                    <option value="L" {% if mahasiswa[6] == 'L' %}selected{% endif %}>Laki-laki</option>
+                    <option value="P" {% if mahasiswa[6] == 'P' %}selected{% endif %}>Perempuan</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="alamat">Alamat:</label>
+                <textarea class="form-control" id="alamat" name="alamat" rows="3" required>{{ mahasiswa[5] }}</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+        </form>
+
+        <!-- Tombol Kembali -->
+        <div class="mt-4 text-center">
+            <a href="/admin/dashboard" class="btn btn-secondary">Kembali</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS dan jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

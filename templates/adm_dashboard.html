@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css"> <!-- Jika ada style tambahan -->
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="text-center">Dashboard Admin</h2>
+
+        <!-- Tombol Navigasi -->
+        <div class="mb-4 text-center">
+            <a href="/admin/tindakan_terkini" class="btn btn-info mr-2">Kelola Status</a>
+            <a href="/admin/daftar_admin" class="btn btn-warning mr-2">Daftar Admin</a>
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+
+        <!-- Form Pencarian Mahasiswa -->
+        <form method="GET" action="/admin/dashboard" class="form-inline mb-4">
+            <input type="text" name="search" placeholder="Cari mahasiswa..." class="form-control mr-2" value="{{ search_query }}">
+            <button type="submit" class="btn btn-primary">Cari</button>
+        </form>
+
+        <h3 class="mb-3">Data Mahasiswa</h3>
+
+        <!-- Tabel Mahasiswa -->
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>No HP</th>
+                    <th>Tanggal Lahir</th>
+                    <th>Alamat</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Status</th>
+                    <th>Kelola Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mhs in mahasiswa %}
+                <tr>
+                    <td>{{ mhs[0] }}</td>
+                    <td>{{ mhs[1] }}</td>
+                    <td>{{ mhs[2] }}</td>
+                    <td>{{ mhs[3] }}</td>
+                    <td>{{ mhs[4] }}</td>
+                    <td>{{ mhs[5] }}</td>
+                    <td>{{ mhs[6] }}</td>
+                    <td>{{ mhs[7] or 'Menunggu' }}</td> <!-- Status Mahasiswa -->
+                    <td>
+                        <a href="/admin/edit_mahasiswa/{{ mhs[0] }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form method="POST" action="/admin/hapus_mahasiswa/{{ mhs[0] }}" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS dan jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

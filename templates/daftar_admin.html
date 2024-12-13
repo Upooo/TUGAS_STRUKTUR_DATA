@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css"> <!-- Jika ada style tambahan -->
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="text-center">Daftar Admin</h2>
+
+        <!-- Tombol Navigasi -->
+        <div class="mb-4 text-center">
+            <a href="/admin/tambah" class="btn btn-success mr-2">Tambah Admin</a>
+            <a href="/admin/dashboard" class="btn btn-secondary">Kembali</a>
+        </div>
+
+        <!-- Tabel Daftar Admin -->
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>No HP</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for admin in admins %}
+                <tr>
+                    <td>{{ admin[0] }}</td>
+                    <td>{{ admin[1] }}</td>
+                    <td>{{ admin[2] }}</td>
+                    <td>{{ admin[3] }}</td>
+                    <td>
+                        <form method="POST" action="/admin/hapus/{{ admin[0] }}" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS dan jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
